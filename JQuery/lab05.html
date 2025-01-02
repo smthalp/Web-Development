@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Lab 5 - Javascript and JQuery</title>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Creepster&family=Single+Day&display=swap" rel="stylesheet">
+	<style>
+		input{border-color:purple; color:orange;}
+		h1 {color:orange;font-family:Creepster; font-size:40px;}
+		.box {
+			background-color: white;
+		}
+		.image-container {
+            position: relative;
+            display: inline-block;
+            width: 300px; /* Initial width */
+            height: 200px; /* Initial height */
+            cursor: pointer;
+        }
+		.close-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: black;
+            font-size: 40px;
+            cursor: pointer;
+            display: none;
+            z-index: 10000;
+        }
+        #animate {
+			width:100%;
+			height:100%;
+		}
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+    <script>
+	
+        function validate() {
+            let text;
+            const number = document.getElementById("number").value;
+            const name = document.getElementById("name").value;
+            const address = document.getElementById("address").value;
+            const validName = /^[A-Za-z\s]+$/;
+            const validNumber = /^\(\d{3}\) \d{3}-\d{4}$/;
+
+            if (!validName.test(name)) {
+				document.getElementById("nameDisplay").innerHTML = "";
+                document.getElementById("addressDisplay").innerHTML = "";
+                document.getElementById("numberDisplay").innerHTML = "";
+                document.getElementById("errorDisplay").innerHTML = "Please input a valid name, using only letters.";
+            } 
+            else if (!validNumber.test(number)) {
+				document.getElementById("nameDisplay").innerHTML = "";
+                document.getElementById("addressDisplay").innerHTML = "";
+                document.getElementById("numberDisplay").innerHTML = "";
+                document.getElementById("errorDisplay").innerHTML = "Please input a valid number, in the form (XXX) XXX-XXXX.";
+            } 
+            else {
+                const newNumber = number.replace(/\((\d{3})\) (\d{3})-(\d{4})/, "$1-$2-$3");
+                document.getElementById("nameDisplay").innerHTML = `Name: ${name}`;
+                document.getElementById("addressDisplay").innerHTML = `Address: ${address}`;
+                document.getElementById("numberDisplay").innerHTML = `Phone: ${newNumber}`;
+                document.getElementById("errorDisplay").innerHTML = "";
+        }
+	};
+	$(document).ready(function () {
+	
+	$("#textInput").on("input", function () {
+            const input = $(this).val();
+            const totalCharacters = input.length;
+            const lettersOnly = input.match(/[A-Za-z\s]/g) || [];
+            
+            $("#charCount").text(totalCharacters);
+            $("#letterCount").text(lettersOnly.length);
+     });
+
+	 $(".image-container").on("click", function () {
+		 $(this).stop().animate({
+                        width: '100%',
+                        height: '100%',
+                        top: '0',
+                        left: '0',
+                        position: 'fixed',
+                        zIndex: '9999'
+                    }, 400);
+          $('.close-icon').show();
+		 });
+		 
+     $(".close-icon").on("click", function () {
+		  event.stopPropagation();
+          $(".image-container").stop().animate({
+                        width: '300px',
+                        height: '200px',
+                        top: '0',
+                        left: '0',
+                        position: 'static',
+                        zIndex: 'auto'
+                    }, 400);
+    
+                    // hide the close button and image
+                    $(this).hide();
+            });
+
+	});
+    </script>
+</head>
+<body style="text-align:center;background-color:black;font-family:Single Day;">
+<h1> Form Validation </h1>
+<section style="font-size:2em;" class="box">
+<form>
+<p>Input your name:
+<input id="name" type="text">
+</p>
+<p>Input your address:
+<input id="address" type="text">
+</p>
+<p>Input your phone number:
+<input id="number" type="text">
+<button type="button" onclick="validate()">OK</button>
+</p>
+<p style="color:red;" id="errorDisplay"></p>
+</form>
+
+
+<section style="color:orange; font-size:1em;">
+<p id="nameDisplay"></p>
+<p id="addressDisplay"></p>
+<p id="numberDisplay"></p>
+</section>
+</section>
+
+<h1> Character Counter </h1>
+
+<section class="box">
+<textarea style="margin:5px;" id="textInput" rows="5" cols="30" placeholder="Type here..."></textarea>
+ <p>
+    <span style="font-size: large;">Total Characters: <span id="charCount">0</span></span><br>
+    <span style="font-size: large;">Letters Only: <span id="letterCount">0</span></span>
+ </p>
+ </section>
+ 
+ <h1> Full-screen Image </h1>
+ 
+ <section class="box">
+ <div class="image-container">
+    <img src="pumpkins.png" alt="Pumpkins" id="animate">
+    <span class="material-icons close-icon">close</span>
+</div>
+</section>
+
+</body>
+</html>

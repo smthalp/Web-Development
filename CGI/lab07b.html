@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><title>lab07b form</title> 
+<style>
+p{font-size:25px;}
+p.subparagraph{font-size:20px;}
+div {text-align:center;}
+h1 {font-size:50px;}
+input[type="submit"] {
+            font-family: 'Chewy', cursive;
+            font-size: 20px;
+            padding: 10px 20px;
+            background-color: #5a4b6a;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+input[type="file"] {
+            font-family: 'Chewy', cursive;
+            font-size: 15px;
+            padding: 10px 20px;
+            background-color: #5a4b6a;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chewy&display=swap" rel="stylesheet">
+</head>
+<body style="font-family:Chewy; background-color:#96869c; margin-top:50px;">
+<div>
+<h1>Submit a Form</h1>
+<form action="https://www2.cs.torontomu.ca/~slopapa/cgi-bin/lab07b.cgi" method="post" enctype="multipart/form-data">
+<p>Enter Your First Name:<input type="text" name="first"></p>
+<p>Enter Your Last Name:<input type="text" name="last"></p>
+<p>Enter Your Address:</p>
+<p class="subparagraph">Street Name: <input type="text" name="street"></p>
+<p class="subparagraph">Postal Code: <input type="text" name="postal"></p>
+<p class="subparagraph">Province:
+<select name="province">
+<option value="">Select your Province</option>
+<option value="Ontario">Ontario</option>
+<option value="Alberta">Alberta</option>
+<option value="British Columbia">British Columbia</option>
+<option value="Manitoba"> Manitoba</option>
+<option value="New Brunswick">New Brunswick</option>
+<option value="Newfoundland">New Foundland</option>
+<option value="Nova Scotia">Nova Scotia</option>
+<option value="Prince Edward Island">Prince Edward Island</option>
+<option value="Quebec">Quebec</option>
+<option value="Saskatchewan">Saskatchewan</option>
+<option value="Northwest Territories">Northwest Territories</option>
+<option value="Yukon">Yukon</option>
+<option value="Nunavut">Nunavut</option>
+</select>
+</p>
+<p>Enter Your Phone Number:<input type="text" name="number"></p>
+<p>Enter your Email Address:<input type="text" name="email"></p>
+<p>Upload a Photograph:<input type="file" name="picture"></p>
+<p><input type="submit"></p>
+</form>
+<div>
+</body>
+</html>
